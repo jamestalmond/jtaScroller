@@ -1,8 +1,8 @@
-# jtaProductScroller
+# jtaScroller
 
 Requires jQuery 1.x (https://jquery.com/).
 
-In progress jQuery product scroller, options and features include:
+In progress jQuery scroller, options and features include:
 
 - Items per scroll.
 - Scroller speed.
