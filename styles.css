@@ -1,0 +1,157 @@
+
+.ul-reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ib {
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: top;
+}
+.wrapper {
+	width: 1280px;
+	padding-right: 20px;
+	padding-left: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.center-text {
+	text-align: center;
+}
+
+
+
+
+
+.products {
+	margin-bottom: 20px;
+}
+.products-heading {
+  text-align: center;
+}
+.product-scroller {
+	position: relative;
+	width: 100%;
+	min-height: 180px;
+}
+.product-scroller-controls-previous,
+.product-scroller-controls-next {
+	position: absolute;
+	z-index: 2;
+	width: 30px;
+	height: 180px;
+	line-height: 180px;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 700;
+	font-size: 17px;
+	color: #000;
+	background-color: #f3f3f3;
+}
+.product-scroller-controls-previous:hover,
+.product-scroller-controls-next:hover {
+	background-color: #e3e3e3;
+}
+.product-scroller-controls-previous {
+	left: 0;
+}
+.product-scroller-controls-next {
+	right: 0;
+}
+.product-scroller-wrapper {
+	position: absolute;
+	z-index: 1;
+	left: 30px;
+	width: 1220px;
+	min-height: 180px;
+	overflow: hidden;
+}
+.product-scroller-ul {
+	position: absolute;
+	font-size: 0;
+}
+.product-scroller-item {
+	width: 180px;
+	margin-right: 10px;
+	font-size: 13px;
+}
+.product-scroller-image {
+	position: relative;
+	width: 100%;
+	height: 180px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.product-scroller-image:hover {
+	cursor: pointer;
+}
+.product-scroller-image:hover > .product-scroller-image-view-details {
+	opacity: 1;
+}
+.product-scroller-image-view-details {
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background-color: rgba(255,255,255,.8);
+	text-align: center;
+	font-family: "Playfair Display", Georgia, Times, "Times New Roman", serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #000;
+	opacity: 0;
+	-webkit-transition: opacity 0.2s ease-in-out;
+		 -moz-transition: opacity 0.2s ease-in-out;
+			 -o-transition: opacity 0.2s ease-in-out;
+					transition: opacity 0.2s ease-in-out;
+}
+.product-scroller-image-view-details:hover {
+	text-decoration: none;
+}
+.product-scroller-image-view-details:visited {
+	color: inherit;
+}
+.product-scroller-name {
+	margin: 10px 0;
+	font-family: "Gudea", Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+}
+.product-scroller-name a {
+	color: #222;
+}
+.product-scroller-name a:visited {
+	color: #800080;
+}
+.product-scroller-short-description {
+	margin: 10px 0;
+}
+.product-scroller-price {
+	margin-right: 5px;
+	font-weight: 700;
+	color: #000;
+}
+.product-scroller-rrp {
+	text-decoration: line-through;
+	color: #666;
+}
+
+
+
+/****** jQuery classes ******/
+.product-scroller-control-inactive {
+	display: none;
+	cursor: default;
+}
+.product-scroller-control-active {
+	display: block;
+	cursor: pointer;
+}
+.product-scroller-control-active:hover {
+	background-color: #e3e3e3;
+}
