@@ -1,10 +1,10 @@
-# jtaScroller
+# jtaScroller v0.81
 
 Requires jQuery 1.x (https://jquery.com/).
 
 In progress jQuery scroller, options and features include:
 
-- Items per scroll.
-- Scroller speed.
+- Option to change items per scroll.
+- Option to change scroller speed.
 - Controls that disable if you can't scroll in that direction.
-- Works no matter how many scrollers you have on the page.
+- Works with multiple scrollers on the same page.
