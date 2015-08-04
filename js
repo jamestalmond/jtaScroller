@@ -1,85 +1,84 @@
-
-// j
-//// jta product scroller
+//// jtaScroller
 // options
-var scrollerContainer = ".product-scroller"; // your scroller wrapper
-var scrollerControlInActive = "product-scroller-control-inactive"; // your inactive control class
-var scrollerControlActive = "product-scroller-control-active"; // your active control class
-var scrollerItemsPerScroll = 6; // how many items you want to scroll by per click, usually one less than the items in view
-var scrollerItemsInView = 7; // how many items are in view at a time
-var scrollerSpeed = 400; // ms
+var jtaScrollerContainer = ".jtaScroller"; // your scroller wrapper class
+var jtaScrollerControlInActive = "jtaScroller_control-inactive"; // your inactive control class name
+var jtaScrollerControlActive = "jtaScroller_control-active"; // your active control class name
+var jtaScrollerItemsPerScroll = 6; // how many items you want to scroll by per click, usually one less than the items in view
+var jtaScrollerItemsInView = 7; // how many items are in view at a time including the last one item that's slightly cut off
+var jtaScrollerSpeed = 400; // ms
 
 var marginLeft = "margin-left";
 
-$(scrollerContainer).each(function(){
+$(jtaScrollerContainer).each(function(){
 	// finds each scroller wrapper's child elements, assigns variables
-	var scrollerNext = $(this).find(".product-scroller-controls-next");
-	var scrollerPrev = $(this).find(".product-scroller-controls-previous");
-	var scrollerItem = $(this).find(".product-scroller-item");
-	var scrollerUl = $(this).find(".product-scroller-ul");
-	var scrollerWrapper = $(this).find(".product-scroller-wrapper");	
+	var jtaScrollerNext = $(this).find(".jtaScroller_controls-next");
+	var jtaScrollerPrev = $(this).find(".jtaScroller_controls-previous");
+	var jtaScrollerItem = $(this).find(".jtaScroller_item");
+	var jtaScrollerUl = $(this).find(".jtaScroller_ul");
+	var jtaScrollerWrapper = $(this).find(".jtaScroller_wrapper");	
 
-	var productScrollerCurrentPosition = 0; // current position of the scroller, 0 = start	
-	var productScrollerItemTotal = $(scrollerItem).length; // amount of items within the scroller	
-	var productScrollerItemWidth = $(scrollerItem).outerWidth(true); // get product scroller item width including padding and borders
-	var productScrollerItemWidthTotal = productScrollerItemWidth * productScrollerItemTotal; // calculates width of total items to product scroller ul
+	var jtaScrollerCurrentPosition = 0; // current position of the scroller, set to 0
+	var jtaScrollerItemTotal = $(jtaScrollerItem).length; // amount of items within the scroller	
+	var jtaScrollerItemWidth = $(jtaScrollerItem).outerWidth(true); // get scroller item width including padding and borders
+	var jtaScrollerItemWidthTotal = jtaScrollerItemWidth * jtaScrollerItemTotal; // calculates width of total items to product scroller ul
 
-	$(scrollerUl).css({"width":productScrollerItemWidthTotal}); // assigns width of total items to product scroller ul
+	$(jtaScrollerUl).css({"width":jtaScrollerItemWidthTotal}); // assigns width of total items to scroller ul
 
 	// when the window has finished loading workout the max-height of the items within the scroller and apply this height to the wrapper and container
 	$(window).load(function(){
 		// get an array of all element heights
-		var productScrollerItemMaxHeight = $(scrollerItem).map(function(){return $(this).outerHeight(true);}).get();
-		var maxHeight = Math.max.apply(null, productScrollerItemMaxHeight);
+		var jtaScrollerItemMaxHeight = $(jtaScrollerItem).map(function(){return $(this).outerHeight(true);}).get();
+		var maxHeight = Math.max.apply(null, jtaScrollerItemMaxHeight);
 
 		// set wrapper and container's height to the max height of the items within
-		$(scrollerWrapper).height(maxHeight);
-		$(scrollerContainer).height(maxHeight);
+		$(jtaScrollerWrapper).height(maxHeight);
+		$(jtaScrollerContainer).height(maxHeight);
 	});
 
 	// add prep class
-	$(scrollerPrev).addClass(scrollerControlInActive);
+	$(jtaScrollerPrev).addClass(jtaScrollerControlInActive);
+	$(jtaScrollerNext).addClass(jtaScrollerControlActive);
 
 	// on click move ul
-	var productScrollerItemWidthAnimateLeft = "-=" + (productScrollerItemWidth * scrollerItemsPerScroll); // next
-	var productScrollerItemWidthAnimateRight = "+=" + (productScrollerItemWidth * scrollerItemsPerScroll); // prev
+	var jtaScrollerItemWidthAnimateLeft = "-=" + (jtaScrollerItemWidth * jtaScrollerItemsPerScroll); // next
+	var jtaScrollerItemWidthAnimateRight = "+=" + (jtaScrollerItemWidth * jtaScrollerItemsPerScroll); // prev
 
 	// next
-	function moveProductScrollerLeft(){
-		if (productScrollerCurrentPosition <= (productScrollerItemTotal - scrollerItemsInView)){
-			$(scrollerUl).animate({
-				marginLeft:productScrollerItemWidthAnimateLeft
-			}, scrollerSpeed); // animate scroller left
-			productScrollerCurrentPosition+=scrollerItemsPerScroll; // update current position
+	function moveJtaScrollerLeft(){
+		if (jtaScrollerCurrentPosition <= (jtaScrollerItemTotal - jtaScrollerItemsInView)){
+			$(jtaScrollerUl).animate({
+				marginLeft:jtaScrollerItemWidthAnimateLeft
+			}, jtaScrollerSpeed); // animate scroller left
+			jtaScrollerCurrentPosition+=jtaScrollerItemsPerScroll; // update current position
 
-			$(scrollerPrev).removeClass(scrollerControlInActive); // inactive styles
-			$(scrollerPrev).addClass(scrollerControlActive); // active styles
+			$(jtaScrollerPrev).removeClass(jtaScrollerControlInActive); // inactive styles
+			$(jtaScrollerPrev).addClass(jtaScrollerControlActive); // active styles
 
-			if (productScrollerItemTotal >= productScrollerCurrentPosition && productScrollerItemTotal <= (productScrollerCurrentPosition + scrollerItemsPerScroll)) {
-				$(scrollerNext).removeClass(scrollerControlActive); // active styles
-				$(scrollerNext).addClass(scrollerControlInActive); // inactive styles
+			if (jtaScrollerItemTotal >= jtaScrollerCurrentPosition && jtaScrollerItemTotal <= (jtaScrollerCurrentPosition + jtaScrollerItemsPerScroll)) {
+				$(jtaScrollerNext).removeClass(jtaScrollerControlActive); // active styles
+				$(jtaScrollerNext).addClass(jtaScrollerControlInActive); // inactive styles
 			};
 		};
 	};
 
 	// prev
-	function moveProductScrollerRight(){
-		if (productScrollerCurrentPosition > 0){
-			$(scrollerUl).animate({
-				marginLeft:productScrollerItemWidthAnimateRight
-			}, scrollerSpeed); // animate scroller right
-			productScrollerCurrentPosition-=scrollerItemsPerScroll; // update current position
+	function moveJtaScrollerRight(){
+		if (jtaScrollerCurrentPosition > 0){
+			$(jtaScrollerUl).animate({
+				marginLeft:jtaScrollerItemWidthAnimateRight
+			}, jtaScrollerSpeed); // animate scroller right
+			jtaScrollerCurrentPosition-=jtaScrollerItemsPerScroll; // update current position
 
-			$(scrollerNext).removeClass(scrollerControlInActive); // inactive styles
-			$(scrollerNext).addClass(scrollerControlActive); // active styles
+			$(jtaScrollerNext).removeClass(jtaScrollerControlInActive); // inactive styles
+			$(jtaScrollerNext).addClass(jtaScrollerControlActive); // active styles
 
-			if (productScrollerCurrentPosition == 0) {
-				$(scrollerPrev).removeClass(scrollerControlActive); // active styles
-				$(scrollerPrev).addClass(scrollerControlInActive); // inactive styles
+			if (jtaScrollerCurrentPosition == 0) {
+				$(jtaScrollerPrev).removeClass(jtaScrollerControlActive); // active styles
+				$(jtaScrollerPrev).addClass(jtaScrollerControlInActive); // inactive styles
 			};
 		};
 	};
 
-	$(scrollerNext).click(moveProductScrollerLeft); // on click move scroller left
-	$(scrollerPrev).click(moveProductScrollerRight); // on click move scroller right
+	$(jtaScrollerNext).click(moveJtaScrollerLeft); // on click move scroller left
+	$(jtaScrollerPrev).click(moveJtaScrollerRight); // on click move scroller right
 });
